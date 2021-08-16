@@ -41,3 +41,18 @@ func (li List) Traverse(f func(V int)) {
 		n = n.Next
 	}
 }
+func (li List) Detach(pos int, n *Node) List {
+	if pos == 0 {
+		li.Head = n
+		return li
+	}
+	insPos := li.Head
+	for i := 0; i < pos; i++ {
+		insPos = insPos.Next
+		if insPos == nil {
+			return li
+		}
+	}
+	n.Val=insPos.Val
+	return li
+}

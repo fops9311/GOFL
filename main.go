@@ -1,7 +1,7 @@
 package main
 
 import (
-	dom "Gofl/src/domain"
+	dom "GOFL/src/domain"
 	"fmt"
 	"time"
 )

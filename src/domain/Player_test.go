@@ -1,7 +1,7 @@
 package domain_test
 
 import (
-	dom "Gofl/src/domain"
+	dom "GOFL/src/domain"
 	"testing"
 )
 
@@ -16,10 +16,10 @@ func TestPlayerNewAction(t *testing.T) {
 	p1 := dom.NewPlayer()
 	actionChan := p1.ActionChannel()
 	go func() {
-		p1.NewAction(dom.Action{Type: 2})
+		p1.NewAction(2)
 	}()
 	action := <-*actionChan
-	if action.Type != 2 {
-		t.Fatalf("action.Type should == 2: %v", action.Type)
+	if action.(int) != 2 {
+		t.Fatalf("action.Type should == 2: %v", action.(int))
 	}
 }
