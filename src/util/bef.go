@@ -42,17 +42,20 @@ func (li List) Traverse(f func(V int)) {
 	}
 }
 func (li List) Detach(pos int, n *Node) List {
+	li.Len--
 	if pos == 0 {
-		li.Head = n
+		n = li.Head
+		li.Head = li.Head.Next
 		return li
 	}
 	insPos := li.Head
-	for i := 0; i < pos; i++ {
-		insPos = insPos.Next
-		if insPos == nil {
-			return li
+	for i := 0; i < pos-1; i++ {
+		if insPos.Next.Next == nil {
+			break
 		}
+		insPos = insPos.Next
 	}
-	n.Val=insPos.Val
+	n.Val = insPos.Next.Val
+	insPos.Next = insPos.Next.Next
 	return li
 }
